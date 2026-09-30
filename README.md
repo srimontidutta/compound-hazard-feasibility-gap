@@ -1,6 +1,6 @@
 # Compound-Hazard Feasibility Gap (CHFG)
 
-Companion resources for **“Compound-Hazard Feasibility Gaps in Climate Adaptation Planning”** by Srimonti Dutta and Akshata Kishore Moharir.
+Resources for **“Compound-Hazard Feasibility Gaps in Climate Adaptation Planning”** by Srimonti Dutta and Akshata Kishore Moharir.
 
 A response plan can pass its single-hazard feasibility checks and still lose executability when several hazards occur together. CHFG measures the weighted share of constituent-valid compound scenarios in which the **default combined response** becomes infeasible because required capabilities are unavailable, shared capacity is exceeded, or both.
 
@@ -17,34 +17,11 @@ A response plan can pass its single-hazard feasibility checks and still lose exe
 
 The case uses uniform scenario weights. The six public action records come from the **2024 New York City Hazard Mitigation Plan Mitigation Actions Database**; the dependency model, normalized capacities and demands, stress effects, and response roles form the paper's controlled analytical experiment.
 
-## The diagnostic
+## How CHFG works
 
-```mermaid
-flowchart LR
-    A[Single-hazard responses] --> B{Feasible individually?}
-    B -->|Yes| C[Eligible compound scenario]
-    C --> D[Compose default responses]
-    D --> E{Feasible together?}
-    E -->|Yes| F[Default feasibility retained]
-    E -->|No| G[Record failure witness]
-    G --> H[Capability loss]
-    G --> I[Resource contention]
-    G --> J[Both]
-    G --> K[Evaluate permitted alternatives]
-    K --> L{Any feasible response?}
-    L -->|Yes| M[Contingency coverage retained]
-    L -->|No| N[Residual feasibility gap]
-```
-
-For an evaluated compound-scenario family \(\mathcal C\), CHFG conditions on the subset \(\mathcal C^+\) whose response-triggering constituents pass their corresponding single-hazard checks:
-
-\[
-\mathrm{CHFG}=
-\frac{\sum_{S\in\mathcal C^+}w_S\,\mathbb I[F(M_S,\omega_S)=0]}
-{\sum_{S\in\mathcal C^+}w_S}.
-\]
-
-The failure witness is retained alongside the scalar result so that capability loss and shared-resource contention can be traced to specific plan dependencies.
+<p align="center">
+  <img src="chfg-workflow.png" alt="CHFG workflow" width="760">
+</p>
 
 ## Where to start
 
@@ -52,7 +29,7 @@ The failure witness is retained alongside the scalar result so that capability l
 
 Start with [`APPLYING_CHFG.md`](APPLYING_CHFG.md). It gives the audit sequence from action extraction and dependency mapping through constituent checks, compound feasibility, failure diagnosis, and contingency coverage.
 
-The reusable records are in [`templates/`](templates/):
+Reusable records are available in [`templates/`](templates/):
 
 - [`action_record.csv`](templates/action_record.csv) for plan actions, goals, capabilities, resources, and source references;
 - [`scenario_record.csv`](templates/scenario_record.csv) for compound states, weights, feasibility outcomes, and failure witnesses;
@@ -60,46 +37,39 @@ The reusable records are in [`templates/`](templates/):
 
 ### Read the formal definition
 
-[`SPECIFICATION.md`](SPECIFICATION.md) collects the planning objects, eligibility rule, CHFG definition, contingency coverage, failure indicators, reporting requirements, and terminology used across the repository.
+[`SPECIFICATION.md`](SPECIFICATION.md) gives the planning objects, eligibility rule, CHFG definition, contingency coverage, failure indicators, reporting requirements, and terminology used across the repository.
+
+CHFG is evaluated over compound scenarios whose response-triggering constituents pass their corresponding single-hazard checks. The specification also records the failure witness associated with each infeasible default composition so that capability loss and shared-resource contention can be traced to specific plan dependencies.
 
 ### Inspect the worked case
 
-[`examples/nyc_worked_example.md`](examples/nyc_worked_example.md) walks through the New York City mitigation-action fragment used in the paper. The supporting records in [`data/`](data/) include the six source actions, the illustrative response model, scenario assumptions, scenario-level results, and severity sensitivity.
+[`examples/nyc_worked_example.md`](examples/nyc_worked_example.md) walks through the New York City mitigation-action fragment used in the paper.
 
-## What the New York City records contribute
+The supporting records in [`data/`](data/) include:
 
-The public mitigation-action records provide the action identities and documented purposes used to construct the case. The controlled experiment then assigns protection goals, default and alternative roles, capability dependencies, normalized resource demands, scenario-conditioned capacities, and stress effects. Keeping these layers separate makes the worked example inspectable while preserving the distinction between source material and analytical assumptions.
+- the six source action records;
+- the illustrative response model;
+- scenario assumptions;
+- scenario-level results;
+- severity sensitivity.
 
-The action source is the New York City Hazard Mitigation Plan Mitigation Actions Database:
+## New York City source records
 
-https://nychazardmitigation.com/documentation/mitigation/actions/
+The public mitigation-action records provide the action identities and documented purposes used to construct the case. The controlled experiment then assigns protection goals, default and alternative roles, capability dependencies, normalized resource demands, scenario-conditioned capacities, and stress effects.
+
+The repository keeps the source records and analytical assumptions separate so that the worked example can be inspected directly.
+
+The public action records are drawn from the [New York City Hazard Mitigation Plan Mitigation Actions Database](https://nychazardmitigation.com/documentation/mitigation/actions/).
 
 ## Reusing CHFG
 
-A new application needs four ingredients: a response plan, a compound-scenario family, an explicit model of required capabilities and shared resources, and a declared rule for combining constituent responses. Scenario weights may represent a uniform stress-test design or, when defensible joint probabilities are available, a specified planning distribution or climate horizon.
+A new CHFG application needs four ingredients:
 
-The most useful output is usually a small set of linked results rather than CHFG alone: constituent coverage, CHFG, contingency coverage, and the capability/resource witnesses for failed default compositions. Together they show where separately workable responses cease to compose and which permitted alternatives preserve coverage.
+1. a response plan;
+2. a compound-scenario family;
+3. an explicit model of required capabilities and shared resources;
+4. a declared rule for combining constituent responses.
 
-## Repository map
+Scenario weights may represent a uniform stress-test design or, when defensible joint probabilities are available, a specified planning distribution or climate horizon.
 
-```text
-.
-├── README.md
-├── APPLYING_CHFG.md
-├── SPECIFICATION.md
-├── data/
-│   ├── README.md
-│   ├── nyc_actions.csv
-│   ├── illustrative_action_model.csv
-│   ├── scenario_assumptions.csv
-│   ├── scenario_results.csv
-│   └── sensitivity_results.csv
-├── examples/
-│   ├── nyc_worked_example.md
-│   └── representative_traces.csv
-└── templates/
-    ├── action_record.csv
-    ├── scenario_record.csv
-    └── audit_record.md
-```
-
+A CHFG audit reports constituent coverage, CHFG, contingency coverage, and the capability or resource witnesses associated with failed default compositions. These outputs show where separately workable responses cease to compose and which permitted alternatives preserve coverage.

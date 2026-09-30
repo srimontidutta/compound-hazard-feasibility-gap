@@ -1,0 +1,5 @@
+illustrative_scenario,diagnostic_trace_and_implication,case_outcome
+Coastal storm + transport disruption,Road access disables the mobile shelter-power response. The fixed school quick-connect remains feasible.,recoverable
+Flooding + transport disruption,Road access disables the active responses and no listed alternative restores all goals.,residual gap
+Flooding + power outage + fuel disruption,Shared capacity is binding. A fixed critical-site power option restores a feasible combination.,recoverable
+Coastal storm + flooding + transport disruption,Capability loss and resource contention occur together. No listed alternative is feasible.,residual gap

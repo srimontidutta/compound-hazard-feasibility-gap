@@ -1,0 +1,2 @@
+scenario_id,stressors,response_triggering_constituents,active_protection_goals,capability_state,renewable_resource_capacities,analysis_weight,constituent_checks_pass,default_feasible,capability_failure_witness,resource_failure_witness,feasible_permitted_response,unmet_protection_goals,notes
+,,,,,,,,,,,,,

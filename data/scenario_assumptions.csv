@@ -1,0 +1,7 @@
+model_element,baseline_or_trigger,coastal_storm_effect,flooding_effect,power_outage_effect,transport_disruption_effect,fuel_disruption_effect,role_in_feasibility_test
+fuel_service_capacity,13 normalized units,-1,0,-1,0,-5,Shared support capacity for fuel-dependent operations
+response_team_capacity,13 normalized units,-1,-1,0,0,0,Concurrent staffing / operational team capacity
+mobilization_capacity,13 normalized units,-1,-2,0,-5,0,Capacity for moving people or deployable assets
+road_access,available at baseline,,,,set unavailable,,Binary capability required by mobile responses
+usable_facility,available at baseline,,,,,,Binary capability for fixed shelter / site responses
+communications,available at baseline,,,,,,Binary capability required by selected mobile responses

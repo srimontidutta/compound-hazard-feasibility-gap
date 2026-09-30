@@ -1,0 +1,7 @@
+protection_goal,action_name,source_action_id,case_role,required_capabilities,fuel_service_demand,response_team_demand,mobilization_demand
+shelter_continuity,mobile_generator_shelter,MA.00180,default,road_access;usable_facility;communications,2.5,1.5,2.0
+shelter_continuity,fixed_quick_connect_shelter,MA.00177,alternative,usable_facility,2.0,1.0,0.0
+dewatering,diesel_pump_toolkit,MA.00181,default,road_access;usable_facility,2.0,2.0,1.0
+critical_power,portable_generator_deployment,MA.00712,default,road_access;communications,3.0,1.5,2.0
+critical_power,fixed_generator_at_critical_site,MA.00685,alternative,usable_facility,2.0,1.0,0.0
+emergency_mobility,contingency_bus_fleet,MA.00680,default,road_access;communications,2.5,2.0,4.0

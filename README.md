@@ -1,6 +1,7 @@
 # Compound-Hazard Feasibility Gap (CHFG)
 
 Resources for **“Compound-Hazard Feasibility Gaps in Climate Adaptation Planning”** by Srimonti Dutta and Akshata Kishore Moharir.
+Paper has been accepted at AAAI 2026 Fall Symposium. Link will be shared once published.
 
 A response plan can pass its single-hazard feasibility checks and still lose executability when several hazards occur together. CHFG measures the weighted share of constituent-valid compound scenarios in which the **default combined response** becomes infeasible because required capabilities are unavailable, shared capacity is exceeded, or both.
 
